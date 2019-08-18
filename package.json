@@ -4,7 +4,7 @@
   "description": "REST API for image uploading",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "moxios": "^0.4.0",
+    "supertest": "^4.0.2"
   }
 }
