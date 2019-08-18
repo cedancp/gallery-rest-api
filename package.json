@@ -1,0 +1,21 @@
+{
+  "name": "gallery-api",
+  "version": "1.0.0",
+  "description": "REST API for image uploading",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cedancp/gallery-rest-api.git"
+  },
+  "keywords": [
+    "gallery rest api"
+  ],
+  "author": "Cesar Cobo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
