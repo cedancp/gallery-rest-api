@@ -1,12 +1,8 @@
 const express = require('express');
-
 const app = express();
 
-app.use((req, res, next) => {
-    res.status(200).json({
-        message: 'test'
-    });
+const imagesRoutes = require('./api/routes/images');
 
-});
+app.use('/images', imagesRoutes);
 
 module.exports = app;
