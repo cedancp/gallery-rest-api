@@ -2,13 +2,26 @@
  * Routes for images related requests
  */
 
-const express = require('express');
+import express from 'express';
+import { uploadImage, getImages } from '../controllers/ImagesController';
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.status(200).json([{
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg'
-    }])
-}) 
+/**
+ *  
+ * Route to get a list of images
+ * 
+ * @param route
+ * @param controller
+ */
+router.get('/', getImages);
+
+/**
+ *  
+ * Route upload an image
+ * 
+ * @param route
+ * @param controller
+ */
+router.get('/', uploadImage);
 
 module.exports = router;
