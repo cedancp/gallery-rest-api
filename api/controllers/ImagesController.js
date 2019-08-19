@@ -1,4 +1,5 @@
-
+import ImageModel from '../models/ImageModel'
+import { saveImage } from '../repositories/ImageRepository'
 /**
  * Gets a list of images
  * @param {*} req 
@@ -16,7 +17,20 @@ export const getImages = async (req, res) => {
  * @param {*} res 
  */
 export const uploadImage = async (req, res) => {
-  res.status(200).send({
-    message: 'image uploaded'
-  });
+  if(req.file) {
+    let image = new ImageModel()
+    image.name = 'test';
+    image.description = 'test';
+    image.imageUrl = req.file.filename;
+
+    await saveImage(image);
+    res.status(200).send({
+      message: 'image uploaded'
+    });
+  } else {
+    res.status(608).send({
+      message: 'image not uploaded'
+    });
+  }
+  
 }

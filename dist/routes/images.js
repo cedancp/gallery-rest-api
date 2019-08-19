@@ -2,27 +2,56 @@
 
 var _express = _interopRequireDefault(require("express"));
 
-var _ImagesController = _interopRequireDefault(require("../controllers/ImagesController"));
+var _ImagesController = require("../controllers/ImagesController");
 
-var _ImagesController2 = require("../../dist/controllers/ImagesController");
+var _multer = _interopRequireDefault(require("multer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /**
  * Routes for images related requests
  */
+// Multer configuration
+var storage = _multer["default"].diskStorage({
+  destination: function destination(req, file, callback) {
+    callback(null, 'uploadedImages/');
+  },
+  filename: function filename(req, file, callback) {
+    callback(null, "".concat(new Date().toISOString(), "_").concat(file.originalname));
+  }
+});
+
+var fileFilter = function fileFilter(req, file, callback) {
+  if (file.mimetype === 'image/jpg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
+    callback(null, true);
+  } else {
+    callback(null, false);
+  }
+};
+
+var upload = (0, _multer["default"])({
+  storage: storage,
+  fileFilter: fileFilter
+});
+
 var router = _express["default"].Router();
 /**
- * Gets a list of images from database
+ *  
+ * Route to get a list of images
  * 
- * Route /images
+ * @param route
+ * @param controller
  */
-// router.get('/', (req, res, next) => {
-//     res.status(200).json([{
-//         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg'
-//     }])
-// });
 
 
-router.get('/', _ImagesController2.uploadImage);
+router.get('/', _ImagesController.getImages);
+/**
+ *  
+ * Route upload an image
+ * 
+ * @param route
+ * @param controller
+ */
+
+router.post('/', upload.single('imageFile'), _ImagesController.uploadImage);
 module.exports = router;

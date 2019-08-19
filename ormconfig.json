@@ -1,4 +1,15 @@
 {
+  "name": "default",
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "gallery",
+  "synchronize": true,
+    "entities": [
+      "dist/entities/*.js"
+    ],
     "subscribers": [
       "dist/subscriber/*.js"
     ],
@@ -6,7 +17,7 @@
       "dist/migration/*.js"
     ],
     "cli": {
-      "entitiesDir": "dist/entity",
+      "entitiesDir": "dist/entities",
       "migrationsDir": "dist/migration",
       "subscribersDir": "dist/subscriber"
     }
