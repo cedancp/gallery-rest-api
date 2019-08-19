@@ -4,7 +4,7 @@
   "description": "REST API for image uploading",
   "main": "index.js",
   "scripts": {
-    "start": "babel api --out-dir dist && node dist/app.js",
+    "start": "node api/app.js",
     "test": "npx jest"
   },
   "repository": {
@@ -27,11 +27,6 @@
     "typeorm": "^0.2.18"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
-    "@babel/preset-env": "^7.5.5",
     "jest": "^24.9.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"

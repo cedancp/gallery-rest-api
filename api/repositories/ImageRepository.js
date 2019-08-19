@@ -1,16 +1,11 @@
-import { getConnection } from "typeorm";
-import { Image } from '../entities/Image'
+const getConnection = require('typeorm').getConnection;
+const Image = require('../entities/Image');
 
-export const saveImage = async (image) => {
-    try {
-        await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(Image)
-        .values(image)
-        .execute();
-    } catch (error) {
-        console.log('**************',error)
-    }
-    
+exports.saveImage = async (image) => {
+    await getConnection()
+    .createQueryBuilder()
+    .insert()
+    .into(Image)
+    .values(image)
+    .execute();    
 }

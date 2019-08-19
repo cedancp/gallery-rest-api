@@ -2,9 +2,10 @@
  * Routes for images related requests
  */
 
-import express from 'express';
-import { uploadImage, getImages } from '../controllers/ImagesController';
-import multer from 'multer';
+const express = require('express');
+const uploadImage = require('../controllers/ImagesController').uploadImage;
+const getImages = require('../controllers/ImagesController').getImages;
+const multer = require('multer');
 
 // Multer configuration
 const storage = multer.diskStorage({

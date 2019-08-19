@@ -1,4 +1,4 @@
-export default class ImageModel {
+class ImageModel {
 
     constructor(name, description, imageUrl) {
         this.name = name;
@@ -6,3 +6,7 @@ export default class ImageModel {
         this.imageUrl = imageUrl;
     }
 }
+
+module.exports = {
+    ImageModel: ImageModel
+};
