@@ -4,7 +4,7 @@
   "description": "REST API for image uploading",
   "main": "index.js",
   "scripts": {
-    "start": "node api/app.js",
+    "start": "nodemon api/app.js",
     "test": "npx jest"
   },
   "repository": {

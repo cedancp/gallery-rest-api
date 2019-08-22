@@ -1,10 +1,11 @@
+require('dotenv').config()
 const http = require('http');
 const express = require('express');
-const typeorm = require("typeorm"); 
+const typeorm = require("typeorm");
 
 const imagesRoutes = require('./routes/images');
 
-const PORT = process.eventNames.port || 3000;
+const PORT = process.env.port || 3000;
 const app = express();
 
 // Gets connections from .env file and creates connection
@@ -22,6 +23,7 @@ typeorm.createConnection({
     ]
 }).then((connection) => {
     app.use('/images', imagesRoutes);
+    app.use('/gallery', express.static("uploadedImages"))
     const server = http.createServer(app);
     server.listen(PORT, () =>
         console.log(`Server is running on http://localhost:${PORT}`)

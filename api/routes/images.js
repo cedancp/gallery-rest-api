@@ -4,7 +4,7 @@
 
 const express = require('express');
 const uploadImage = require('../controllers/ImagesController').uploadImage;
-const getImages = require('../controllers/ImagesController').getImages;
+const listImages = require('../controllers/ImagesController').listImages;
 const multer = require('multer');
 
 // Multer configuration
@@ -36,7 +36,7 @@ const router = express.Router();
  * @param route
  * @param controller
  */
-router.get('/', getImages);
+router.get('/', listImages);
 
 /**
  *  
