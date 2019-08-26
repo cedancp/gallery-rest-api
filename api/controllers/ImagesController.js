@@ -8,7 +8,6 @@ const getImages = require('../repositories/ImageRepository').getImages;
  */
 exports.listImages = async (req, res) => {
   const images = await getImages();
-  console.log(images)
   // Setting real image url 
   images.forEach( image => {
     image.imageUrl = `${process.env.IMAGE_DOMAIN}${image.imageUrl}`
@@ -22,6 +21,7 @@ exports.listImages = async (req, res) => {
  * @param {*} res 
  */
 exports.uploadImage = async (req, res) => {
+  console.log(req.file)
   if(req.file) {
     let image = new ImageModel();
     image.name = req.body.name;
@@ -29,9 +29,12 @@ exports.uploadImage = async (req, res) => {
     image.imageUrl = req.file.filename;
 
     await saveImage(image);
-    res.status(200).send({
-      message: 'image uploaded'
-    });
+    const images = await getImages();
+    images.forEach( image => {
+      image.imageUrl = `${process.env.IMAGE_DOMAIN}${image.imageUrl}`
+    })
+
+    res.status(200).json(images);
   } else {
     res.status(608).send({
       message: 'image not uploaded'
