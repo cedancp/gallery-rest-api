@@ -11,11 +11,11 @@ const app = express();
 // Gets connections from .env file and creates connection
 typeorm.createConnection({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "root",
-    database: "gallery",
+    host: process.env.HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USER,
+    password: process.env.PASS,
+    database: process.env.DB,
     synchronize: true,
     logging: false,
     entities: [
