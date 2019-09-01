@@ -37,6 +37,7 @@ services:
       DB_USER: "root"
       PASS: "root"
       DB: "gallery"
+      IMAGE_DOMAIN: "http://172.20.0.5:3000/gallery/"
 
 networks:
 
