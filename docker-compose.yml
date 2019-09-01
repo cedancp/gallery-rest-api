@@ -1,0 +1,48 @@
+version: '2.2'
+
+services:
+
+  mysql:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'gallery'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - '3307:3306'
+    expose:
+      - '3306'
+    networks:
+      gallery:
+        ipv4_address: 172.20.0.6
+
+  gallery-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c '/home/gallery-api/wait-for.sh mysql:3306 -- npm start'
+    ports:
+      - "3000:3000"
+    expose:
+      - '3000'
+    networks:
+      gallery:
+        ipv4_address: 172.20.0.5
+    depends_on:
+      - mysql
+    environment:
+      HOST: mysql
+      DB_PORT: 3306
+      DB_USER: "root"
+      PASS: "root"
+      DB: "gallery"
+      IMAGE_DOMAIN: "http://172.20.0.5:3000/gallery/"
+
+networks:
+
+  gallery:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.20.0.0/24
